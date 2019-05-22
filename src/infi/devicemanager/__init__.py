@@ -42,6 +42,17 @@ class Device(object):
                     raise KeyError(key)
                 chain(exception)
 
+
+
+    @property
+    @cached_method
+    def DriverVersion(self):
+        try:
+            return self._get_setupapi_property(properties.DEVPKEY_Device_DriverVersion)
+        except KeyError:
+            return 'DriverVersion unavailable'
+
+
     @property
     @cached_method
     def class_guid(self):
